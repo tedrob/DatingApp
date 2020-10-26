@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService } from '../_services/account.service';
-import { Observable } from 'rxjs';
-import { User } from '../_models/user';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { error } from '@angular/compiler/src/util';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-nav',
@@ -12,6 +10,7 @@ import { error } from '@angular/compiler/src/util';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  @ViewChild('loginForm') loginForm: NgForm;
   model: any = {};
 
   constructor(public accountService: AccountService, private router: Router,
@@ -22,6 +21,7 @@ export class NavComponent implements OnInit {
 
   login() {
     this.accountService.login(this.model).subscribe(response => {
+      this.loginForm.reset();
       this.router.navigateByUrl('/members');
     });
   }

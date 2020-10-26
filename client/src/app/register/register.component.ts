@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AccountService } from './../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
-import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-register',
